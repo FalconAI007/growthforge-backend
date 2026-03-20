@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from core.router import route_query
 from core.lead_capture import save_lead, get_all_leads, get_lead_count
@@ -10,8 +10,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins="*", methods=["GET", "POST", "OPTIONS"],
-     allow_headers=["Content-Type"])
+
+# Robust CORS — allows all origins for all routes
+CORS(app,
+     resources={r"/*": {"origins": "*"}},
+     allow_headers=["Content-Type", "Authorization",
+                    "Access-Control-Allow-Origin"],
+     methods=["GET", "POST", "OPTIONS"],
+     supports_credentials=False)
 
 CALENDLY_LINK = os.getenv(
     "CALENDLY_LINK", "https://calendly.com/your-link"
@@ -19,6 +25,36 @@ CALENDLY_LINK = os.getenv(
 openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 DECISION_INTENTS = ["PRICING", "ONBOARDING"]
+
+
+def add_cors_headers(response):
+    """Add CORS headers to every response."""
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = \
+        "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = \
+        "Content-Type, Authorization"
+    return response
+
+
+@app.after_request
+def after_request(response):
+    """Ensure CORS headers on every response including errors."""
+    return add_cors_headers(response)
+
+
+@app.before_request
+def handle_preflight():
+    """Handle OPTIONS preflight requests explicitly."""
+    if request.method == "OPTIONS":
+        response = make_response()
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = \
+            "GET, POST, OPTIONS"
+        response.headers["Access-Control-Allow-Headers"] = \
+            "Content-Type, Authorization"
+        response.headers["Access-Control-Max-Age"] = "3600"
+        return response, 200
 
 
 def is_user_ready_to_book(message, conversation_history):
@@ -95,10 +131,6 @@ Is this user ready to book right now?"""
             f"confidence={confidence}, reason={reason}"
         )
 
-        # Accept high or medium confidence
-        # High = explicit booking request
-        # Medium = clear contextual confirmation like "yes"
-        # after booking CTA
         return ready is True and confidence in ("high", "medium")
 
     except Exception as e:
@@ -106,8 +138,11 @@ Is this user ready to book right now?"""
         return False
 
 
-@app.route("/chat", methods=["POST"])
+@app.route("/chat", methods=["POST", "OPTIONS"])
 def chat():
+    if request.method == "OPTIONS":
+        return make_response(), 200
+
     data = request.json
     user_message = data.get("message", "").strip()
     session_id = data.get("session_id", "default")
@@ -139,7 +174,6 @@ def chat():
     # Read session state for Calendly decision
     cta_previously_shown = session.get("cta_shown", False)
 
-    # Debug — print full state so we can trace issues
     print(
         f"DEBUG CALENDLY STATE: "
         f"stage={stage}, "
@@ -155,13 +189,9 @@ def chat():
         history = session.get("history", [])
 
         if cta_in_this_response:
-            # CTA appeared in THIS response
-            # Don't show Calendly yet — wait for user to respond
             print("DEBUG: CTA shown this turn — waiting for response")
 
         elif cta_previously_shown:
-            # CTA was shown in a previous message
-            # User is now responding — check if they want to book
             print("DEBUG: CTA was previously shown — checking booking intent")
             show_calendly = is_user_ready_to_book(
                 user_message, history
@@ -171,8 +201,6 @@ def chat():
                       "user responded to CTA")
 
         else:
-            # No CTA shown yet but user may be explicitly requesting
-            # booking — check anyway for "give me the link" type messages
             print("DEBUG: No CTA yet — checking for explicit booking request")
             show_calendly = is_user_ready_to_book(
                 user_message, history
@@ -215,8 +243,11 @@ def chat():
     })
 
 
-@app.route("/leads", methods=["GET"])
+@app.route("/leads", methods=["GET", "OPTIONS"])
 def leads():
+    if request.method == "OPTIONS":
+        return make_response(), 200
+
     all_leads = get_all_leads()
     return jsonify({
         "total": len(all_leads),
@@ -224,16 +255,22 @@ def leads():
     })
 
 
-@app.route("/health", methods=["GET"])
+@app.route("/health", methods=["GET", "OPTIONS"])
 def health():
+    if request.method == "OPTIONS":
+        return make_response(), 200
+
     return jsonify({
         "status": "Chanakya is online",
         "leads_captured": get_lead_count()
     })
 
 
-@app.route("/capture-lead", methods=["POST"])
+@app.route("/capture-lead", methods=["POST", "OPTIONS"])
 def capture_lead():
+    if request.method == "OPTIONS":
+        return make_response(), 200
+
     data = request.json
     session_id = data.get("session_id", "default")
 
