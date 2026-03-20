@@ -4,7 +4,7 @@ langchain
 langchain-community
 langchain-huggingface
 sentence-transformers
-pinecone-client
+pinecone
 openai
 psycopg2-binary
 python-dotenv
