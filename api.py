@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from core.router import route_query
 from core.lead_capture import save_lead, get_all_leads, get_lead_count
-from core.database import update_session, get_history
+from core.database import update_session, get_history, get_all_leads_db
 from openai import OpenAI
 import os
 import json
@@ -29,6 +29,7 @@ DECISION_INTENTS = ["PRICING", "ONBOARDING"]
 
 @app.after_request
 def after_request(response):
+    """Ensure CORS headers on every response."""
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = \
         "GET, POST, OPTIONS"
@@ -39,6 +40,7 @@ def after_request(response):
 
 @app.before_request
 def handle_preflight():
+    """Handle OPTIONS preflight requests explicitly."""
     if request.method == "OPTIONS":
         response = make_response()
         response.headers["Access-Control-Allow-Origin"] = "*"
@@ -51,6 +53,11 @@ def handle_preflight():
 
 
 def is_user_ready_to_book(message, conversation_history):
+    """
+    Uses GPT to determine if user genuinely wants to book.
+    Accepts high OR medium confidence to avoid missing
+    clear but contextual confirmations like "yes, now".
+    """
     try:
         history_text = ""
         if conversation_history:
@@ -161,10 +168,10 @@ def chat():
         if updates:
             update_session(session_id, updates)
 
-    # Get full history from Supabase
+    # Get full history from Supabase for Calendly check
     history = get_history(session_id)
 
-    # Check if CTA was shown in a PREVIOUS message
+    # Check if CTA was shown in a PREVIOUS assistant message
     # Exclude the last assistant message (current response)
     # so we don't count the current CTA as previously shown
     assistant_messages = [
@@ -196,13 +203,11 @@ def chat():
     if stage == "DECISION" and message_count >= 3:
 
         if cta_in_this_response:
-            # CTA appeared in THIS response
-            # Wait for user to respond before showing Calendly
+            # CTA in THIS response — wait for user to respond
             print("DEBUG: CTA shown this turn — waiting for response")
 
         elif cta_previously_shown:
-            # CTA was shown in a previous message
-            # User is now responding — check if they want to book
+            # CTA shown before — check if user wants to book now
             print("DEBUG: CTA previously shown — checking booking intent")
             show_calendly = is_user_ready_to_book(
                 user_message, history
@@ -213,7 +218,7 @@ def chat():
 
         else:
             # No CTA yet — check for explicit booking request
-            print("DEBUG: No CTA yet — checking explicit booking request")
+            print("DEBUG: No CTA yet — checking explicit booking")
             show_calendly = is_user_ready_to_book(
                 user_message, history
             )
@@ -289,6 +294,19 @@ def capture_lead():
             "message": "Invalid session ID"
         }), 400
 
+    # Get existing lead score from Supabase
+    # so we never overwrite a high score with 1
+    existing_leads = get_all_leads_db()
+    existing = next(
+        (l for l in existing_leads
+         if l["session_id"] == session_id),
+        None
+    )
+    existing_score = (
+        existing.get("lead_score", 1)
+        if existing else 1
+    )
+
     lead = save_lead(
         session_id=session_id,
         name=data.get("name"),
@@ -297,7 +315,7 @@ def capture_lead():
         business=data.get("business"),
         intent="manual_capture",
         stage="captured",
-        lead_score=data.get("lead_score", 1)
+        lead_score=existing_score
     )
 
     return jsonify({
