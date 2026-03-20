@@ -280,6 +280,23 @@ def health():
     })
 
 
+@app.route("/conversations/<session_id>", methods=["GET", "OPTIONS"])
+def get_conversation(session_id):
+    """
+    Returns full conversation history for a session.
+    Used by dashboard to show transcript in detail panel.
+    Fetches directly from Supabase conversations table.
+    """
+    if request.method == "OPTIONS":
+        return make_response(), 200
+    history = get_history(session_id)
+    return jsonify({
+        "session_id": session_id,
+        "history": history,
+        "count": len(history)
+    })
+
+
 @app.route("/capture-lead", methods=["POST", "OPTIONS"])
 def capture_lead():
     if request.method == "OPTIONS":
