@@ -161,16 +161,25 @@ def chat():
         if updates:
             update_session(session_id, updates)
 
-    # Get history from Supabase for Calendly check
+    # Get full history from Supabase
     history = get_history(session_id)
 
-    # Read cta_shown from conversation_history context
-    # by checking if any assistant message contains booking CTA
+    # Check if CTA was shown in a PREVIOUS message
+    # Exclude the last assistant message (current response)
+    # so we don't count the current CTA as previously shown
+    assistant_messages = [
+        msg for msg in history
+        if msg.get("role") == "assistant"
+    ]
+    previous_assistant_messages = (
+        assistant_messages[:-1]
+        if assistant_messages else []
+    )
+
     cta_previously_shown = any(
         "strategy call" in msg.get("content", "").lower() and
         "book" in msg.get("content", "").lower()
-        for msg in history
-        if msg.get("role") == "assistant"
+        for msg in previous_assistant_messages
     )
 
     print(
@@ -187,9 +196,13 @@ def chat():
     if stage == "DECISION" and message_count >= 3:
 
         if cta_in_this_response:
+            # CTA appeared in THIS response
+            # Wait for user to respond before showing Calendly
             print("DEBUG: CTA shown this turn — waiting for response")
 
         elif cta_previously_shown:
+            # CTA was shown in a previous message
+            # User is now responding — check if they want to book
             print("DEBUG: CTA previously shown — checking booking intent")
             show_calendly = is_user_ready_to_book(
                 user_message, history
@@ -199,6 +212,7 @@ def chat():
                       "user responded to CTA")
 
         else:
+            # No CTA yet — check for explicit booking request
             print("DEBUG: No CTA yet — checking explicit booking request")
             show_calendly = is_user_ready_to_book(
                 user_message, history
@@ -212,7 +226,7 @@ def chat():
     elif message_count < 3:
         print(f"DEBUG: Message count {message_count} < 3")
 
-    # Save lead
+    # Save lead with full conversation history
     if (intent in DECISION_INTENTS or
             stage == "DECISION" or user_email):
         save_lead(
