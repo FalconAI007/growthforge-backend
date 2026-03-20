@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
 from core.router import route_query
 from core.lead_capture import save_lead, get_all_leads, get_lead_count
+from core.database import update_session, get_history
 from openai import OpenAI
 import os
 import json
@@ -11,7 +12,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# Robust CORS — allows all origins for all routes
 CORS(app,
      resources={r"/*": {"origins": "*"}},
      allow_headers=["Content-Type", "Authorization",
@@ -27,8 +27,8 @@ openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 DECISION_INTENTS = ["PRICING", "ONBOARDING"]
 
 
-def add_cors_headers(response):
-    """Add CORS headers to every response."""
+@app.after_request
+def after_request(response):
     response.headers["Access-Control-Allow-Origin"] = "*"
     response.headers["Access-Control-Allow-Methods"] = \
         "GET, POST, OPTIONS"
@@ -37,15 +37,8 @@ def add_cors_headers(response):
     return response
 
 
-@app.after_request
-def after_request(response):
-    """Ensure CORS headers on every response including errors."""
-    return add_cors_headers(response)
-
-
 @app.before_request
 def handle_preflight():
-    """Handle OPTIONS preflight requests explicitly."""
     if request.method == "OPTIONS":
         response = make_response()
         response.headers["Access-Control-Allow-Origin"] = "*"
@@ -58,11 +51,6 @@ def handle_preflight():
 
 
 def is_user_ready_to_book(message, conversation_history):
-    """
-    Uses GPT to determine if user genuinely wants to book.
-    Accepts high OR medium confidence to avoid missing
-    clear but contextual confirmations like "yes, now".
-    """
     try:
         history_text = ""
         if conversation_history:
@@ -163,16 +151,27 @@ def chat():
         user_message, session_id
     )
 
-    # Update session contact flags
-    from core.router import session_store
-    session = session_store.get(session_id, {})
-    if user_email:
-        session["email_provided"] = True
-    if user_phone:
-        session["phone_provided"] = True
+    # Update session contact flags in Supabase
+    if user_email or user_phone:
+        updates = {}
+        if user_email:
+            updates["email_provided"] = True
+        if user_phone:
+            updates["phone_provided"] = True
+        if updates:
+            update_session(session_id, updates)
 
-    # Read session state for Calendly decision
-    cta_previously_shown = session.get("cta_shown", False)
+    # Get history from Supabase for Calendly check
+    history = get_history(session_id)
+
+    # Read cta_shown from conversation_history context
+    # by checking if any assistant message contains booking CTA
+    cta_previously_shown = any(
+        "strategy call" in msg.get("content", "").lower() and
+        "book" in msg.get("content", "").lower()
+        for msg in history
+        if msg.get("role") == "assistant"
+    )
 
     print(
         f"DEBUG CALENDLY STATE: "
@@ -186,13 +185,12 @@ def chat():
     show_calendly = False
 
     if stage == "DECISION" and message_count >= 3:
-        history = session.get("history", [])
 
         if cta_in_this_response:
             print("DEBUG: CTA shown this turn — waiting for response")
 
         elif cta_previously_shown:
-            print("DEBUG: CTA was previously shown — checking booking intent")
+            print("DEBUG: CTA previously shown — checking booking intent")
             show_calendly = is_user_ready_to_book(
                 user_message, history
             )
@@ -201,21 +199,20 @@ def chat():
                       "user responded to CTA")
 
         else:
-            print("DEBUG: No CTA yet — checking for explicit booking request")
+            print("DEBUG: No CTA yet — checking explicit booking request")
             show_calendly = is_user_ready_to_book(
                 user_message, history
             )
             if show_calendly:
                 print("DEBUG: ✅ Calendly triggered — "
-                      "explicit booking request detected")
+                      "explicit booking request")
 
     elif stage != "DECISION":
         print(f"DEBUG: Stage is {stage} — Calendly not checked")
     elif message_count < 3:
-        print(f"DEBUG: Message count {message_count} < 3 — "
-              f"Calendly not checked yet")
+        print(f"DEBUG: Message count {message_count} < 3")
 
-    # Save lead with full conversation history
+    # Save lead
     if (intent in DECISION_INTENTS or
             stage == "DECISION" or user_email):
         save_lead(
@@ -247,7 +244,6 @@ def chat():
 def leads():
     if request.method == "OPTIONS":
         return make_response(), 200
-
     all_leads = get_all_leads()
     return jsonify({
         "total": len(all_leads),
@@ -259,7 +255,6 @@ def leads():
 def health():
     if request.method == "OPTIONS":
         return make_response(), 200
-
     return jsonify({
         "status": "Chanakya is online",
         "leads_captured": get_lead_count()
