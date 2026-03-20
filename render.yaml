@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: growthforge-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn api:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: CALENDLY_LINK
+        sync: false
+      - key: FLASK_ENV
+        value: production

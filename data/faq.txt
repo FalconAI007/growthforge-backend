@@ -1,0 +1,534 @@
+========================================
+GROWTHFORGE MEDIA - FREQUENTLY ASKED QUESTIONS
+========================================
+
+GENERAL QUESTIONS
+=================
+
+Q: What is GrowthForge Media?
+A: GrowthForge Media is a social media marketing agency specializing in Facebook Ads and Instagram Ads for local businesses. We help business owners generate consistent, qualified leads through strategic paid advertising and lead generation funnels. Unlike general marketing agencies, we focus exclusively on lead generation and sales results, not vanity metrics like followers.
+
+Q: Who do you work with?
+A: We work with local businesses, professional services, fitness studios, real estate agents, and service-based businesses with annual revenue between $200k-$5M. Our ideal client is someone with a clear sales process, reasonable profit margins, and a commitment to growing through digital channels.
+
+Q: Do you work with e-commerce or pure online businesses?
+A: We can, but it's not our specialty. Our system is designed for businesses where customer lifetime value is high enough to justify lead generation spending. E-commerce typically requires a different approach focused on conversion rates and repeat customer economics.
+
+Q: Are you a Facebook/Meta agency?
+A: We specialize in Facebook and Instagram (Meta platforms) because they offer unmatched targeting capabilities for local businesses. We can integrate other channels, but Facebook and Instagram Ads are our core expertise.
+
+Q: How long have you been in business?
+A: Founded in 2020, we've worked with 150+ clients across 12+ different industries, generating over $1.6M in reported revenue for our clients over the past 4 years.
+
+Q: Do you guarantee results?
+A: We guarantee effort and strategy execution. We can't guarantee market results because many factors outside our control affect outcomes. However, we do guarantee that if we don't hit agreed-upon metrics after 90 days of optimization, we'll continue work at 50% fee until we do.
+
+---
+
+PRICING QUESTIONS
+=================
+
+Q: How much do your services cost?
+A: Pricing is based on two components:
+1. Management Fee: Based on your ad spend budget ($250-$1,500/month depending on scale)
+2. Ad Spend: The actual cost of running ads (paid to Facebook, separate from our fee)
+
+For example, if you allocate $2,000/month for ads, you'd pay:
+- Ad spend: $2,000
+- Management fee: ~$600
+- Total: $2,600/month
+
+Q: What's your minimum investment?
+A: $250/month management fee minimum, plus at least $500-$1,000/month in ad spend. We recommend starting at $1,000-$1,500/month for meaningful results.
+
+Q: Is the management fee negotiable?
+A: On packages under $2,500/month ad spend, pricing is set. For $5,000+/month, we can discuss custom pricing and terms.
+
+Q: Can I pause or cancel anytime?
+A: For Starter packages, you can cancel with 30 days notice. Growth and Premium packages have 60-90 day cancellation notice recommended. There are no early termination fees - we'd rather keep you happy by delivering results.
+
+Q: What if I can't afford a large ad budget to start?
+A: We recommend starting with at least $1,000/month to generate enough data for optimization. If that's too much, you might not be ready for paid ads yet. Focus on organic growth first.
+
+Q: Do I pay the management fee if campaigns aren't running?
+A: If there's an issue on our end, no. If you pause campaigns by choice, the fee still applies since we're maintaining the account and strategy. Usually only comes up during seasonal breaks.
+
+Q: Can you work with my existing ad account?
+A: Yes, we can take over management of existing campaigns. We'll audit everything first and usually recommend pausing old campaigns to start fresh with our optimized structure.
+
+---
+
+SERVICE QUESTIONS
+=================
+
+Q: What's included in Facebook Ads management?
+A: Complete management including:
+- Campaign strategy and setup
+- Ad creative development (design and copy)
+- Audience research and targeting
+- Daily monitoring and optimization
+- Real-time adjustments based on performance
+- Weekly reporting and calls
+- A/B testing of ad variations
+- Budget optimization
+
+Q: Do you create all the content?
+A: Yes. We handle all content creation for Facebook and Instagram ads (images, videos, copy). For organic social posts, the Growth package includes 8-10 per month. Premium includes 12-15+/month.
+
+Q: Can you help with Instagram Ads even if I don't use Instagram?
+A: Yes. Many of our clients don't have an Instagram presence before working with us. We set it up, optimize it, and run ads simultaneously with Facebook. Instagram ads often have lower cost per lead.
+
+Q: What are Lead Generation Funnels?
+A: A funnel system that captures leads through multiple steps:
+1. Ad traffic to landing page
+2. Landing page with lead magnet (free offer)
+3. Email autoresponder sequence
+4. Webinar or sales call offer
+5. Lead delivery to your CRM
+
+This typically generates higher quality leads at lower cost than direct ad click-through.
+
+Q: Do you handle content creation for organic posts?
+A: Yes, depending on your package. Growth package includes standard content (4-6 posts/month basic, 8-10 with premium). Premium includes professional content (12-15+ posts). We don't include organic content in Starter packages.
+
+Q: Do you manage our Facebook/Instagram pages?
+A: If you hire us for content creation, yes - we manage your pages and post on schedule. Otherwise, you manage your pages and we manage ads. We can also do community management as an add-on.
+
+Q: What happens to my campaigns if I leave?
+A: You keep all campaigns, creative, and audience data. We'll provide training on how to manage them yourself. Most clients choose to run them through their own ads manager after we optimize them.
+
+---
+
+RESULTS & PERFORMANCE QUESTIONS
+================================
+
+Q: How many leads should I expect?
+A: Depends on your industry and budget:
+- Local services ($1,500/month budget): 60-100 leads
+- Professional services: 30-50 leads
+- Fitness: 60-100 leads
+- Real estate: 25-40 leads
+- Each industry varies based on competition and cost per lead
+
+Q: How long until I see results?
+A: Week 1: Ads are live, data is being collected
+Week 2-3: Initial trends visible, first optimizations happening
+Week 4: Stable performance emerging
+Month 2: Significant optimization improvements (typically 20-30% cost reduction)
+Month 3+: Optimal performance and ready to scale
+
+Q: What's a good cost per lead?
+A: Varies by industry:
+- Local services: $12-18
+- Professional services: $15-25
+- Fitness: $8-15
+- Real estate: $20-40
+
+If your customer lifetime value is high, $30-40/lead can still be profitable.
+
+Q: How much will it cost to generate a customer?
+A: Cost Per Lead ÷ Close Rate = Cost Per Customer
+
+Example: $15 CPL ÷ 20% close rate = $75 cost per customer
+If your average customer is worth $1,500, that's a 20:1 return.
+
+Q: Can you guarantee a specific ROI?
+A: No, but we work hard to ensure your cost per lead is as low as possible while maintaining quality. Your ROI depends on your sales process and close rate, which we don't control. However, we DO track and report on the quality of leads we generate.
+
+Q: What if leads aren't converting?
+A: Common causes:
+1. Sales process issues (not calling back quickly, poor pitch)
+2. Lead quality being misidentified (they're less qualified than expected)
+3. Offer doesn't match what's being promised in ads
+4. Timing issues (calling during closed hours, etc.)
+
+We can adjust ad targeting and messaging, but ultimately your close rate is your responsibility. We can help by collecting lead feedback.
+
+Q: Can you help improve my close rate?
+A: We can provide coaching, but it's not our primary service. We focus on lead quality and volume. We can help by:
+- Gathering lead feedback from your sales team
+- Adjusting ad targeting to pre-qualify better
+- Testing different offers
+- Connecting with higher-intent audiences
+
+Q: What if I get bad leads?
+A: If leads are below expected quality, we:
+1. Adjust targeting to be more specific
+2. Change messaging to pre-qualify better
+3. Test different audience segments
+4. Add qualification questions to lead forms
+5. Expand budget to winners, pause underperformers
+
+Most quality issues are solved in week 2-3 of optimization.
+
+Q: How do you measure lead quality?
+A: We measure what we can control:
+- Click quality (relevant traffic vs. accidental clicks)
+- Form completion rate (indicates real interest)
+- Lead form data accuracy (valid contact info)
+- Engagement patterns (engaged leads behave differently)
+
+You measure what you control:
+- Conversion rate (leads to customers)
+- Deal size from those customers
+- Customer quality (repeat business, referrals, lifetime value)
+
+We share data to help you identify trends.
+
+Q: Will leads continue after I stop paying?
+A: No. Facebook Ads stops running when campaigns are paused. Any leads in process will continue in your sales pipeline, but no new leads are generated. This is different from organic social, where content continues to work.
+
+Q: Can I scale my lead volume if things are working?
+A: Yes. Once campaigns are optimized and profitable, we can increase budget 10-20% at a time to scale leads. Most clients scale 2-3x by month 3-4.
+
+---
+
+CAMPAIGN SETUP QUESTIONS
+=======================
+
+Q: How long does it take to get campaigns live?
+A: 2-3 weeks from contract signing:
+- Week 1: Discovery, strategy, planning
+- Week 2: Setup, account configuration, creative development
+- Week 3: QA, testing, launch
+
+Q: What information do you need to get started?
+A: 
+- Business overview and goals
+- Target customer profile
+- Current sales process and customer value
+- Budget allocation
+- Brand assets (logo, images, colors)
+- Website and CRM access
+- Any existing customer testimonials
+
+Q: Can I provide my own ads/creative?
+A: Yes, but we generally recommend our creative since we test extensively. If you provide creative, we'll optimize it, but starting fresh often gives better results.
+
+Q: Do you need access to my website?
+A: Yes, for:
+- Installing tracking pixels
+- Understanding your value proposition
+- Building landing pages (if using funnels)
+- Analyzing customer journey
+
+We have NDAs and take security seriously.
+
+Q: Can you integrate with my CRM?
+A: Yes. Common integrations:
+- Zapier (connects to almost any system)
+- Native Facebook CRM integration
+- Email service integrations
+- Custom API connections (on premium plans)
+
+What's your CRM? We can probably integrate it.
+
+Q: What if I don't have a CRM?
+A: We can set one up for you, or use email-based lead delivery. Most clients use:
+- Google Sheets (free)
+- Airtable (free/premium)
+- HubSpot (free tier available)
+- Pipedrive (affordable)
+
+We recommend setting up tracking before campaigns launch.
+
+---
+
+TECHNICAL QUESTIONS
+===================
+
+Q: Do I need to do anything technical?
+A: Minimal. We handle all account setup. You just need to:
+- Provide website/CRM access (secure)
+- Send us brand assets
+- Review and approve creative
+- Forward lead feedback to optimize
+
+Q: What if I don't have a website?
+A: You should get one before Facebook Ads. Even a simple landing page is better than sending traffic nowhere. We can help design landing pages specifically for lead capture.
+
+Q: Do I need to install anything on my website?
+A: Yes, the Facebook Pixel. It's a small code snippet that tracks conversions. We handle the installation, but your website needs to be accessible to us.
+
+Q: What data privacy compliance do you provide?
+A: We're compliant with:
+- GDPR (European privacy law)
+- CCPA (California privacy law)
+- CAN-SPAM (email marketing)
+- Facebook's policies
+
+Your lead forms include proper privacy disclosures.
+
+Q: Can I see the data in real-time?
+A: Yes. We provide you with:
+- Live dashboard access to all campaign data
+- Custom reports weekly and monthly
+- Real-time lead tracking
+- Full transparency on spend and results
+
+Q: How do you protect customer data?
+A: 
+- All data encrypted in transit and at rest
+- Secure access controls
+- Limited staff access
+- Regular security audits
+- Compliance with data protection laws
+- We never sell or share your data
+
+---
+
+COMPARISON & COMPETITIVE QUESTIONS
+===================================
+
+Q: How are you different from other agencies?
+A: Key differences:
+1. Local Business Focus: We specialize in local/service businesses, not general e-commerce
+2. Lead Generation: We focus on qualified leads, not followers or engagement
+3. Transparency: You see exactly what's working and costs
+4. Guarantee: If we miss targets after 90 days, we work at 50% fee until we hit them
+5. Results: 150+ clients with 3-5x lead volume improvement
+
+Q: Why not use Google Ads?
+A: Google Ads is best for:
+- Search intent (people searching for your service)
+- Competitive keywords (often expensive)
+- Immediate needs
+
+Facebook Ads is best for:
+- Local targeting
+- Awareness (finding people who don't know about you)
+- Behavioral targeting (finding your ideal customer)
+- Relationship building (nurturing leads)
+
+Best answer: Use both. But Facebook usually has lower CPL.
+
+Q: How do you compare to freelance ad managers?
+A: Freelancers often:
+- Manage many clients simultaneously
+- Limited strategic oversight
+- May not optimize consistently
+- Less accountability
+
+We offer:
+- Dedicated strategy and optimization
+- Team expertise (not one person)
+- Proven systems and processes
+- Results-based accountability
+
+Q: Why not do this ourselves?
+A: You could. But:
+- Learning curve (3-6 months to get proficient)
+- Time commitment (10-15 hours/week minimum)
+- Skill requirements (strategy, psychology, design)
+- Data analysis (interpreting results)
+- Continuous learning (algorithm changes, platform updates)
+
+Most business owners make more money focusing on their business than learning ads.
+
+Q: When should I hire an agency vs. doing it myself?
+A: Hire an agency when:
+- Your hourly rate is worth more than learning ads
+- You want professional results faster
+- You need accountability and expertise
+- Your marketing budget is $1,000+/month
+- You want to scale quickly
+
+Do it yourself when:
+- Learning is enjoyable for you
+- You have 10+ hours/week to learn and manage
+- Your budget is under $500/month
+- You want full control
+- You're comfortable with a slow learning curve
+
+---
+
+SUPPORT & COMMUNICATION QUESTIONS
+==================================
+
+Q: How do I reach you if I have a question?
+A: Multiple channels:
+- Email: info@growthforgemedia.com
+- Phone: [Business Phone]
+- Slack: (for premium clients)
+- Scheduled weekly calls
+- Dashboard messaging
+
+Q: How fast will you respond?
+A: Starter: 24-48 hours
+Growth: 12-24 hours
+Premium: 4 hours (during business hours)
+
+Q: What hours do you support?
+A: Monday-Friday, 9am-6pm EST
+Urgent issues: Contact emergency number during support hours
+Weekend: Check-in available but not guaranteed
+
+Q: Can I speak with a human?
+A: Yes, all client support is handled by a human team member, not chatbots or automated responses.
+
+Q: How often will we talk?
+A: Starter: Monthly calls
+Growth: Bi-weekly calls (30 min each)
+Premium: Weekly calls (45-60 min)
+
+Plus: Weekly email reports for all packages
+
+Q: Can I request a specific account manager?
+A: We'll assign a primary account manager who knows your business. You can request a different person if needed.
+
+Q: What if I'm not happy with service?
+A: Let us know immediately. We'll:
+1. Have a conversation about issues
+2. Create an improvement plan
+3. Assign new resources if needed
+4. Work harder to deliver results
+5. Refund management fee if we're unable to help
+
+We want you happy. Unhappy clients don't stick around, and we don't want to keep anyone by contract obligation alone.
+
+---
+
+GETTING STARTED QUESTIONS
+=========================
+
+Q: How do I get started?
+A: 1. Schedule a free 30-minute consultation call
+   2. We discuss your business and goals
+   3. Provide initial assessment and recommendations
+   4. If good fit, discuss next steps and investment
+   5. Sign contract and begin onboarding
+
+Q: What's the first step?
+A: Click "Schedule Consultation" on our website or email us at info@growthforgemedia.com
+
+Q: What will we discuss in the first call?
+A: Your business, target customer, current marketing, goals, and whether Facebook Ads is right for you. No hard sell - just honest conversation.
+
+Q: Is the first consultation free?
+A: Yes, 30-minute discovery calls are complimentary.
+
+Q: How soon can we start campaigns?
+A: If you decide to move forward after the first call, we can have campaigns live within 2-3 weeks.
+
+Q: What if I need more time to decide?
+A: No pressure. Give us a call anytime you're ready. Many people think about it for a few weeks before signing on.
+
+Q: What's your cancellation policy?
+A: Starter: 30 days notice
+Growth/Premium: 60-90 days notice recommended
+No early termination fees.
+
+Q: Can I try a small test before committing?
+A: Yes. Start with Starter package ($250/month + $500-1000 ad spend) for 90 days. If it works, upgrade. If not, you're free to leave.
+
+Q: What if Facebook Ads doesn't work for my business?
+A: Possible, but unlikely. We conduct proper discovery to ensure fit before signing you on. Industries where it doesn't work:
+- Extremely saturated markets (tough competition)
+- Very low customer value (hard to justify lead cost)
+- Targeting too broad or too narrow
+- Bad sales process (we can't fix internal issues)
+
+We'll recommend other strategies if Facebook Ads isn't right.
+
+---
+
+POST-ENGAGEMENT QUESTIONS
+==========================
+
+Q: When should I scale my budget?
+A: When CPL is below target AND lead quality is confirmed. Usually:
+- Month 1: Testing phase, fixed budget
+- Month 2: Increase 10-20% if performing well
+- Month 3+: Scale 20-50% per month if profitable
+
+Q: Can I add additional services after starting?
+A: Absolutely. Common upgrades:
+- Add Instagram Ads (from Facebook only)
+- Add video content creation
+- Add email marketing
+- Add landing page design
+- Add CRM integration
+
+Q: What happens after 90 days?
+A: You transition to ongoing optimization and scaling. If it's working, you continue with regular optimization. If not, we work together to improve or discuss alternatives.
+
+Q: Can you help with other marketing?
+A: Limited. Our core service is Facebook/Instagram Ads and funnels. We can refer you to trusted partners for:
+- Google Ads
+- Email marketing
+- Content marketing
+- Website design
+- SEO
+
+But we keep focus on what we do best.
+
+Q: How do I measure ROI?
+A: Cost Per Lead × Close Rate = Cost Per Customer
+Cost Per Customer ÷ Customer Lifetime Value = ROI
+
+Example:
+$15 CPL × 25% close rate = $60 customer acquisition cost
+$60 CAC ÷ $600 customer lifetime value = 10:1 ROI
+
+We provide the CPL and lead count. You provide conversion data.
+
+Q: Can you help improve my sales process?
+A: Not directly, but we can:
+- Identify trends in lead quality
+- Provide coaching on pre-qualifying better
+- Test messaging to attract higher-intent prospects
+- Connect with sales process experts we know
+
+Q: What if my close rate drops?
+A: Likely causes:
+1. Sales team changes (new person closing)
+2. Product/service changes (less valuable now)
+3. Market changes (customer behavior shifted)
+4. Lead quality degradation (we changed something)
+
+We'd analyze with you to identify the cause and adjust.
+
+Q: Can you help with organic social media?
+A: We can, but it's not our specialty. We focus on paid ads because they're measurable and scalable. Organic social takes time without guaranteed ROI.
+
+Q: What's the next step after leads are coming in?
+A: Typically clients want to:
+1. Improve lead quality (targeting adjustments)
+2. Scale volume (bigger budget, new audiences)
+3. Add channels (Instagram, email nurture)
+4. Build brand awareness (organic content)
+5. Expand to new service areas or products
+
+We can help with all of these.
+
+---
+
+FINAL QUESTIONS
+===============
+
+Q: What makes GrowthForge different from just running ads ourselves?
+A: Expertise, systems, and accountability. We've optimized this for 150+ clients and know what works. We also take responsibility for results, which most DIY approaches don't.
+
+Q: Should I start with Facebook Ads or something else?
+A: If you have:
+- Clear sales process ✓
+- Reasonable profit margins ✓
+- Local focus ✓
+- $1,000+ monthly budget ✓
+
+Then yes, Facebook Ads should be your first paid channel.
+
+Q: What's the biggest mistake businesses make with Facebook Ads?
+A: Not giving optimization enough time. Facebook needs 30-60 days to collect data and optimize. Businesses who kill campaigns after 2 weeks never see the results that are possible.
+
+Q: How can I learn more?
+A: - Review our case studies
+   - Read our service overview
+   - Schedule a free consultation
+   - Check out client testimonials
+   - Browse our FAQ (you're reading it!)
+
+Q: Ready to get started?
+A: Schedule your free consultation: [Website URL or Contact Info]
+
+We look forward to helping your business grow!
