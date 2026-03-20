@@ -1,9 +1,14 @@
 # GrowthForge Media — Backend API (Chanakya)
 
 **Live API:** https://growthforge-api.onrender.com
+
 **Health Check:** https://growthforge-api.onrender.com/health
+
 **Website Repo:** https://github.com/FalconAI007/growthforge-website
+
 **Dashboard Repo:** https://github.com/FalconAI007/growthforge-dashboard
+
+> ❓ **Why is n8n not used?** [Click to jump to explanation ↓](#why-n8n-is-not-included)
 
 ---
 
@@ -17,9 +22,14 @@ Every layer — intent detection, response generation, lead scoring, booking det
 
 ## Screenshots
 
-- `screenshot-render-live.png` — Render dashboard showing service live with green deploy status
-- `screenshot-pinecone-index.png` — Pinecone dashboard showing `growthforge` index with 88 vectors
-- `screenshot-supabase-tables.png` — Supabase table editor showing leads, conversations, sessions tables
+![Render Live](https://github.com/user-attachments/assets/133be668-497f-4f31-a1c7-6996aab4d730)
+*Render dashboard showing the backend service live and deployed at growthforge-api.onrender.com*
+
+![Pinecone Index](https://github.com/user-attachments/assets/399aebbe-0f77-40db-b414-6af0399cbd8d)
+*Pinecone dashboard showing the `growthforge` index with 88 vectors stored across 7 knowledge files*
+
+![Supabase Tables](https://github.com/user-attachments/assets/59b46eb7-7536-489a-b0d4-6bfc8ef60a5e)
+*Supabase table editor showing the three production tables — leads, conversations, and sessions — with live data*
 
 ---
 
@@ -88,8 +98,8 @@ The prototype used a `leads.json` file on the server. Render's filesystem is eph
 **OpenAI Embeddings over sentence-transformers**
 We initially used `all-MiniLM-L6-v2` locally. On Render's free tier (512MB RAM) this caused out-of-memory crashes — the model alone consumes ~400MB on startup. Switching to OpenAI's `text-embedding-3-small` API eliminated the RAM issue completely while improving retrieval quality.
 
-**n8n not included in MVP**
-n8n is excellent for post-lead automation — email sequences, CRM pushes, Slack notifications. We kept it out of the MVP deliberately: adding n8n would introduce another hosted service requiring configuration and maintenance. The priority was making the core AI pipeline robust and production-ready first. n8n integration is the first item on the post-hackathon roadmap.
+#### Why n8n is not included
+n8n is a great tool for workflow automation — but great tools used at the wrong time slow you down. In a rapid prototyping context, every additional service is a new failure point: another deployment, another configuration, another thing that can break during a live demo. We made a deliberate engineering decision to keep the stack lean and focused — nail the core AI pipeline first, then layer automation on top. The result is a system that is stable, fully deployed, and working end-to-end. n8n comes in post-MVP when there are real leads to automate — right now the pipeline that generates those leads needed to be airtight first. That sequencing is intentional, not an oversight.
 
 ---
 
