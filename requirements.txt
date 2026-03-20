@@ -2,10 +2,8 @@ flask
 flask-cors
 langchain
 langchain-community
-langchain-huggingface
-sentence-transformers
-pinecone
 openai
 psycopg2-binary
 python-dotenv
 gunicorn
+pinecone

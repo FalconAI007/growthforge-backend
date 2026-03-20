@@ -1,14 +1,24 @@
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
 from pinecone import Pinecone, ServerlessSpec
+from openai import OpenAI
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 INDEX_NAME = os.getenv("PINECONE_INDEX", "growthforge")
+
+
+def get_embedding(text):
+    """Get embedding using OpenAI — no local model needed."""
+    response = openai_client.embeddings.create(
+        model="text-embedding-3-small",
+        input=text
+    )
+    return response.data[0].embedding
 
 
 def get_or_create_index():
@@ -17,7 +27,7 @@ def get_or_create_index():
         print(f"Creating Pinecone index '{INDEX_NAME}'...")
         pc.create_index(
             name=INDEX_NAME,
-            dimension=384,
+            dimension=1536,  # OpenAI text-embedding-3-small dimension
             metric="cosine",
             spec=ServerlessSpec(
                 cloud="aws",
@@ -46,13 +56,9 @@ def ingest(file_path, doc_type, index):
     chunks = splitter.split_documents(docs)
     print(f"  → {file_path}: {len(chunks)} chunks")
 
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
-
     vectors = []
     for i, chunk in enumerate(chunks):
-        embedding = embeddings.embed_query(chunk.page_content)
+        embedding = get_embedding(chunk.page_content)
         vector_id = (
             f"{doc_type}_{i}_"
             f"{hash(chunk.page_content) % 100000}"

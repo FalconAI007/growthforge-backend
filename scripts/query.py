@@ -1,5 +1,4 @@
 from openai import OpenAI
-from langchain_huggingface import HuggingFaceEmbeddings
 from pinecone import Pinecone
 import os
 import re
@@ -9,15 +8,10 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Initialize Pinecone
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
 INDEX_NAME = os.getenv("PINECONE_INDEX", "growthforge")
 
-# Cache embeddings model — expensive to reload every call
-_embeddings = None
 _index = None
-
-# Response cache for identical first messages
 response_cache = {}
 
 TYPE_TO_DESCRIPTION = {
@@ -56,16 +50,6 @@ TONE_INSTRUCTIONS = {
 }
 
 
-def get_embeddings():
-    """Cache embeddings model — only loads once per server start."""
-    global _embeddings
-    if _embeddings is None:
-        _embeddings = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L6-v2"
-        )
-    return _embeddings
-
-
 def get_index():
     """Cache Pinecone index connection."""
     global _index
@@ -74,18 +58,20 @@ def get_index():
     return _index
 
 
+def get_embedding(text):
+    """Get embedding using OpenAI — no local model needed."""
+    response = client.embeddings.create(
+        model="text-embedding-3-small",
+        input=text
+    )
+    return response.data[0].embedding
+
+
 def retrieve_context(query, doc_type=None, knowledge_types=None):
-    """
-    Retrieve relevant context from Pinecone.
-    Supports filtering by doc_type.
-    Fetches more chunks for pricing and multi-type queries.
-    """
-    embeddings = get_embeddings()
+    """Retrieve relevant context from Pinecone using OpenAI embeddings."""
     index = get_index()
+    query_embedding = get_embedding(query)
 
-    query_embedding = embeddings.embed_query(query)
-
-    # Fetch more chunks when needed
     if knowledge_types and len(knowledge_types) > 1:
         k = 8
     elif doc_type == "pricing":
@@ -93,7 +79,6 @@ def retrieve_context(query, doc_type=None, knowledge_types=None):
     else:
         k = 5
 
-    # Build filter
     filter_dict = None
     if doc_type:
         filter_dict = {"type": {"$eq": doc_type}}
@@ -130,14 +115,12 @@ def extract_business_context(conversation_history):
     ]
     full_history = " ".join(user_messages).lower()
 
-    # Company size
     size_match = re.search(r'(\d+)\s*employees?', full_history)
     if size_match:
         context_points.append(
             f"Company size: {size_match.group(1)} employees"
         )
 
-    # Budget signals
     budget_match = re.search(
         r'\$(\d+(?:,\d+)?(?:k)?)\s*'
         r'(?:per month|monthly|/month|budget)',
@@ -148,7 +131,6 @@ def extract_business_context(conversation_history):
             f"Mentioned budget: {budget_match.group(0)}"
         )
 
-    # Industry detection — full list from original
     industries = {
         "plumbing": "plumber/plumbing business",
         "hvac": "HVAC business",
@@ -205,7 +187,6 @@ def extract_business_context(conversation_history):
             context_points.append(f"Industry: {label}")
             break
 
-    # Pain points
     pain_points = {
         "struggling to get leads": "struggling with lead generation",
         "not enough clients": "insufficient client flow",
@@ -223,7 +204,6 @@ def extract_business_context(conversation_history):
         if phrase in full_history:
             context_points.append(f"Pain point: {label}")
 
-    # Goals
     goals = {
         "more leads": "wants more leads",
         "grow": "wants to grow the business",
@@ -306,19 +286,16 @@ def query_rag(
     cta_shown=False,
     tone="neutral"
 ):
-    # Cache only identical first messages
     if not conversation_history:
         cache_key = query.lower().strip()
         if cache_key in response_cache:
             print("DEBUG: Returning cached response")
             return response_cache[cache_key]
 
-    # Get doc_type from metadata_filter
     doc_type = None
     if metadata_filter:
         doc_type = metadata_filter.get("type")
 
-    # Retrieve context from Pinecone
     context = retrieve_context(
         query,
         doc_type=doc_type,
@@ -338,7 +315,6 @@ def query_rag(
         tone, TONE_INSTRUCTIONS["neutral"]
     )
 
-    # Build knowledge context description
     knowledge_desc = ""
     if knowledge_types:
         descriptions = [
@@ -427,16 +403,9 @@ Remember: 2-3 sentences max, plain text only, facts from knowledge base only."""
             )
 
         if ("insufficient_quota" in error_msg or
-                "billing" in error_msg.lower() or
-                "quota" in error_msg.lower()):
+                "billing" in error_msg.lower()):
             return (
                 "I'm temporarily unavailable. "
-                "Please contact us at hello@growthforgemedia.com"
-            )
-
-        if "401" in error_msg or "invalid_api_key" in error_msg.lower():
-            return (
-                "There's a configuration issue. "
                 "Please contact us at hello@growthforgemedia.com"
             )
 
